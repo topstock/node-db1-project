@@ -3,12 +3,12 @@ const md = require('./accounts-middleware')
 const Account = require('./accounts-model')
 
 router.get('/', async (req, res, next) => {
-  // DO YOUR MAGIC
+  // get all
   try {
     const accounts = await Account.getAll()
     res.json(accounts)
   } catch(err) {
-    next({ status: 422, message: 'this is horrible'})
+    next(err)
   }
 })
 
@@ -39,9 +39,9 @@ router.put(
   '/:id', 
   md.checkAccountId,
   md.checkAccountPayload,
-  md.checkAccountNameUnique,
-  (req, res, next) => {
-    // DO YOUR MAGIC
+  async (req, res, next) => {
+    const updated = await Account.updateById(req.params.id, req.body)
+    res.json(updated)
     try {
       res.json('update account')
   
