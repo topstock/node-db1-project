@@ -44,7 +44,6 @@ exports.checkAccountNameUnique = async (req, res, next) => {
 }
 
 exports.checkAccountId = async (req, res, next) => {
-  // DO YOUR MAGIC
   try {
     const account = await Account.getById(req.params.id)
     if (!account) {
