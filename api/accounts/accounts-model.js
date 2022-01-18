@@ -8,7 +8,8 @@ const getAll = () => {
 
 const getById = id => {
   // DO YOUR MAGIC
-  return db('accounts').where({id}).first();
+  // select * from accounts where id = 1;
+  return db('accounts').where({id}).first();//.where() resolves to a collection of accounts
 }
 
 const create = account => {
